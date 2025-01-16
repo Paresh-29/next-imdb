@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { unique } from 'next/dist/build/utils';
 
 const favSchema = new mongoose.Schema({
   movieId: {
@@ -24,41 +23,41 @@ const favSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-
-const userSchema = new mongoose.Schema({
-  clerkId: {
-    type: String,
-    required: true,
-    unique: true,
+const userSchema = new mongoose.Schema(
+  {
+    clerkId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    profilePicture: {
+      type: String,
+      required: true,
+    },
+    favs: {
+      type: [favSchema],
+      default: [],
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  profilePicture: {
-    type: String,
-    required: true,
-  },
-  favs: {
-    type: [favSchema],
-    default: [],
-  },
-}, { timestamps: true });
+  { timestamps: true }
+);
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 export default User;
-
-

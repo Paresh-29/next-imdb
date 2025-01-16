@@ -1,5 +1,5 @@
 import User from '../models/user.model';
-import { dbConnect } from '../mongodb/mongoose';
+import { connect } from '../mongodb/mongoose';
 export const createOrUpdateUser = async (
   id,
   first_name,
@@ -8,7 +8,7 @@ export const createOrUpdateUser = async (
   email_addresses
 ) => {
   try {
-    await dbConnect();
+    await connect();
     const user = await User.findOneAndUpdate(
       { clerkId: id },
       {
@@ -28,7 +28,7 @@ export const createOrUpdateUser = async (
 };
 export const deleteUser = async (id) => {
   try {
-    await dbConnect();
+    await connect();
     await User.findOneAndDelete({ clerkId: id });
   } catch (error) {
     console.log('Error: Could not delete user:', error);
