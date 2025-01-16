@@ -3,6 +3,7 @@ import "./globals.css";
 import ThemeComponent from '@/components/ThemeComponent';
 import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         <body>
           <ThemeComponent>
             <Header />
+            <Navbar />
             {children}
           </ThemeComponent>
         </body>
